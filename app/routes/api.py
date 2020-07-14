@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify
 import jwt
 
-from ..models import db,
+from ..models import db
 from ..config import Configuration
 
-bp = Blueprint("simple", __name__, "")
+bp = Blueprint("api", __name__, url_prefix="/api")
 
 
 @bp.route('/')
