@@ -1,6 +1,8 @@
-from flask import Blueprint, redirect, render_template
-from ..forms import NewInstrument
-from ..models import Instrument, db
+from flask import Blueprint, request, jsonify
+import jwt
+
+from ..models import db,
+from ..config import Configuration
 
 bp = Blueprint("simple", __name__, "")
 
