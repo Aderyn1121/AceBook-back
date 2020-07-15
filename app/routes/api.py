@@ -100,5 +100,8 @@ def markSeen(msgId):
     senderId = data[senderId]
     userId = data[userId]
     messages = Message.query.filter(sender_id == senderId, recipient_id == userId, id <= msgId).all()
-    messages = [message.seen = True for message in messages]
+    
+    for message in messages:
+        message['seen'] = True
+
     db.session.commit()
