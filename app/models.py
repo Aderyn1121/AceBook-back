@@ -20,8 +20,9 @@ class User(db.Model):
     spontaneous = db.Column(db.Boolean, default=True)
     into_tech = db.Column(db.Boolean, default=True)
     introvert = db.Column(db.Boolean, default=True)
-    liked_users = db.Column(db.ARRAY(db.Integer))
+    liked_users = db.Column(db.ARRAY(db.Integer), default=[])
     blocked_users = db.Column(db.ARRAY(db.Integer), default=[])
+    
 
     @property
     def password(self):
@@ -60,6 +61,7 @@ class Message(db.Model):
     recipient_id = db.Column(db.Integer, db.ForeignKey('users.id'),
                              nullable=False)
     content = db.Column(db.String, nullable=False)
+    seen = db.Column(db.Boolean, default = false)
 
     def to_dict(self):
         return {
@@ -67,5 +69,6 @@ class Message(db.Model):
             "createdAt": self.created_at,
             "sender": self.sender_id,
             "recipient": self.recipient_id,
-            "content": self.content
+            "content": self.content,
+            "seen": self.seen
         }
