@@ -30,7 +30,7 @@ def signup():
                 )
     db.session.add(user)
     db.session.commit()
-    
+
     access_token = jwt.encode({'email': user.email}, Configuration.SECRET_KEY)
     return {'access_token': access_token.decode('UTF-8'),
             'user': user.to_dict()}
@@ -83,6 +83,7 @@ def like_user(likedUserId):
     user = User.query.filter_by(id=liker_id).first()
     user.liked_users = user.liked_users.append(likedUserId)
     db.session.commit()
+    
 
 
 @api.route('/unlike/<int:unlikedId>', methods=["POST"])
@@ -91,5 +92,13 @@ def unlike(unlikedId):
     unlikerId = data['unlikerId']
     user = User.query.filter_by(id=unlikerId)
     user.liked_users.remove(unlikedId)
+    db.session.commit()
 
-
+@api.route('/messages/<int:id>/markSeen')
+def markSeen(msgId):
+    data = request.json
+    senderId = data[senderId]
+    userId = data[userId]
+    messages = Message.query.filter(sender_id == senderId, recipient_id == userId, id <= msgId).all()
+    messages = [message.seen = True for message in messages]
+    db.session.commit()

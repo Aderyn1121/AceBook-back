@@ -22,7 +22,7 @@ class User(db.Model):
     introvert = db.Column(db.Boolean, default=True)
     liked_users = db.Column(db.ARRAY(db.Integer), default=[])
     blocked_users = db.Column(db.ARRAY(db.Integer), default=[])
-    
+
 
     @property
     def password(self):
@@ -61,7 +61,7 @@ class Message(db.Model):
     recipient_id = db.Column(db.Integer, db.ForeignKey('users.id'),
                              nullable=False)
     content = db.Column(db.String, nullable=False)
-    seen = db.Column(db.Boolean, default = false)
+    seen = db.Column(db.Boolean, default=False)
 
     def to_dict(self):
         return {
