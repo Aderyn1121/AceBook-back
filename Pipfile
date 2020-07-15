@@ -21,6 +21,7 @@ wtforms = "*"
 flask-wtf = "*"
 pyjwt = "*"
 flask-cors = "*"
+boto = "*"
 
 [requires]
 python_version = "3.8"

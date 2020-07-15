@@ -51,6 +51,10 @@ def login():
         return {"error": "Incorrect password"}, 401
 
 
+@api.route('/people')
+def get_people:
+
+
 @api.route('/messages/<int:userId>', methods=["GET"])
 def get_messages(userId):
     fetched_messages = Message.query.filter(
