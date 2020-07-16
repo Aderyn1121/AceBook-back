@@ -23,7 +23,6 @@ class User(db.Model):
     liked_users = db.Column(db.ARRAY(db.Integer), default=[])
     blocked_users = db.Column(db.ARRAY(db.Integer), default=[])
 
-
     @property
     def password(self):
         return self.hashed_password
@@ -49,7 +48,6 @@ class User(db.Model):
                 "intoTech": self.into_tech,
                 "introvert": self.introvert,
                 "liked": self.liked_users,
-                "blocked": self.blocked_users
                 }
 
 

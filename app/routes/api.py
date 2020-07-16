@@ -7,7 +7,7 @@ from ..config import Configuration
 api = Blueprint("api", __name__, url_prefix="/api")
 
 
-@api.route('/users', methods=["POST"])
+@api.route('/users', methods=["GET", "POST"])
 def signup():
     print(request.json)
     data = request.json
@@ -18,7 +18,7 @@ def signup():
                 password=data['password'],
                 gender=data['gender'],
                 gender_pref=data['genderPref'],
-                img_url=data['imgUrl'],
+                # img_url=data['imgUrl'],
                 spectrum=data['spectrum'],
                 likes_puns=data['likesPuns'],
                 favorite_pet=data['favPet'],
@@ -36,7 +36,7 @@ def signup():
             'user': user.to_dict()}
 
 
-@api.route('/users/session', methods=["POST"])
+@api.route('/users/session', methods=["GET", "POST"])
 def login():
     data = request.json
     user = User.query.filter(User.email == data['email']).first()
@@ -52,14 +52,17 @@ def login():
 
 
 @api.route('/people')
-def get_people:
+def get_people():
+    fetchedUsers = User.query.all()
+    users = [user.to_dict() for user in fetchedUsers]
+    return {"people": users}
 
 
 @api.route('/messages/<int:userId>', methods=["GET"])
 def get_messages(userId):
     fetched_messages = Message.query.filter(
         (Message.sender_id == userId) | (Message.recipient_id == userId)).all()
-    messages = [message.to_dict for message in fetched_messages]
+    messages = [message.to_dict() for message in fetched_messages]
     return jsonify({"messages": messages})
 
 

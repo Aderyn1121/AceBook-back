@@ -22,6 +22,7 @@ flask-wtf = "*"
 pyjwt = "*"
 flask-cors = "*"
 boto = "*"
+awscli = "*"
 
 [requires]
 python_version = "3.8"
