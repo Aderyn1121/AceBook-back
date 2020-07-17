@@ -36,6 +36,15 @@ def signup():
             'user': user.to_dict()}
 
 
+@api.route('/<int:userId>/bio', methods=["GET", "POST"])
+def post_bio(userId):
+    data = request.json
+    bio = data['bio']
+    user = User.query.filter(id == userId).first()
+    user.bio = bio
+    db.session.commit()
+
+
 @api.route('/users/session', methods=["GET", "POST"])
 def login():
     data = request.json
@@ -89,8 +98,7 @@ def like_user(likedUserId):
     liker_id = data['likerId']
     user = User.query.filter_by(id=liker_id).first()
     user.liked_users = user.liked_users.append(likedUserId)
-    db.session.commit()
-    
+    db.session.commit()  
 
 
 @api.route('/unlike/<int:unlikedId>', methods=["POST"])
@@ -104,10 +112,12 @@ def unlike(unlikedId):
 @api.route('/messages/<int:id>/markSeen')
 def markSeen(msgId):
     data = request.json
-    senderId = data[senderId]
-    userId = data[userId]
-    messages = Message.query.filter(sender_id == senderId, recipient_id == userId, id <= msgId).all()
-    
+    senderId = data['senderId']
+    userId = data['userId']
+    messages = Message.query.filter(Message.sender_id == senderId,
+                                    Message.recipient_id == userId,
+                                    id <= msgId).all()
+  
     for message in messages:
         message['seen'] = True
 

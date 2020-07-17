@@ -14,6 +14,7 @@ class User(db.Model):
     hashed_password = db.Column(db.String(128), nullable=False)
     gender_pref = db.Column(db.String(20))
     img_url = db.Column(db.String)
+    bio = db.Column(db.String, nullable=True)
     spectrum = db.Column(db.String(20), nullable=False)
     likes_puns = db.Column(db.Boolean, default=True)
     favorite_pet = db.Column(db.String(20))
@@ -43,6 +44,7 @@ class User(db.Model):
                 "imgUrl": self.img_url,
                 "spectrum": self.spectrum,
                 "likesPuns": self.likes_puns,
+                "bio": self.bio,
                 "favPet": self.favorite_pet,
                 "spontaneous": self.spontaneous,
                 "intoTech": self.into_tech,
