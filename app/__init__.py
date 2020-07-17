@@ -1,8 +1,8 @@
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 from flask_migrate import Migrate
 from flask_cors import CORS
-
+from .aws3 import upload_file_to_s3
 from app.routes import api
 from app.models import db
 from app.config import Configuration
@@ -20,6 +20,32 @@ db.init_app(app)
 Migrate(app, db)
 
 app.register_blueprint(api.api)
+
+
+@app.route("/api/<userId>/upload", methods=['POST'])
+def upload_file(userId):
+    # A
+    if "file" not in request.files:
+        return "No file key in request.files"
+    # B
+    file = request.files["file"]
+    print('this is the request', request.data)
+    """
+        These attributes are also available
+        file.filename               # The actual name of the file
+        file.content_type
+        file.content_length
+        file.mimetype
+    """
+    # D.
+    if file:
+        # file.filename = secure_filename(file.filename)
+        print('this is the file', file)
+        output = upload_file_to_s3(file, userId, 'woofr')
+        print('this is the output', str(output))
+        return {'photoUrl': str(output)}
+    else:
+        print('something went wrong')
 
 
 @app.route('/', defaults={'path': ''})

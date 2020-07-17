@@ -23,6 +23,7 @@ pyjwt = "*"
 flask-cors = "*"
 boto = "*"
 awscli = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.8"
