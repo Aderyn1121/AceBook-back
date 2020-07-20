@@ -66,7 +66,6 @@ class Message(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "createdAt": self.created_at,
             "sender": self.sender_id,
             "recipient": self.recipient_id,
             "content": self.content,

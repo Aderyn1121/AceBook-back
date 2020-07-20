@@ -60,7 +60,7 @@ def login():
         return {"error": "Incorrect password"}, 401
 
 
-@api.route('/people')
+@api.route('/people', methods=["GET"])
 def get_people():
     fetchedUsers = User.query.all()
     users = [user.to_dict() for user in fetchedUsers]
@@ -75,7 +75,7 @@ def get_messages(userId):
     return jsonify({"messages": messages})
 
 
-@api.route('/messages/<int:userId>', methods=["POST"])
+@api.route('/messages', methods=["POST"])
 def post_message():
     data = request.json
     try:
