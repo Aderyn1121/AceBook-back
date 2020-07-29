@@ -22,6 +22,10 @@ Migrate(app, db)
 app.register_blueprint(api.api)
 
 
+@app.route("/")
+def home():
+    return "Hello World!"
+
 # @app.route('/', defaults={'path': ''})
 # @app.route('/<path:path>')
 # def catch_all(path):
