@@ -6,6 +6,7 @@ from ..config import Configuration
 
 api = Blueprint("api", __name__, url_prefix="/api")
 
+
 def helper(val):
     if val == 1:
         return True
@@ -115,6 +116,7 @@ def unlike(unlikedId):
     user.liked_users.remove(unlikedId)
     db.session.commit()
 
+
 @api.route('/messages/<int:id>/markSeen')
 def markSeen(msgId):
     data = request.json
@@ -122,8 +124,7 @@ def markSeen(msgId):
     userId = data['userId']
     messages = Message.query.filter(Message.sender_id == senderId,
                                     Message.recipient_id == userId,
-                                    id <= msgId).all()
-  
+                                    id <= msgId).all() 
     for message in messages:
         message['seen'] = True
 
