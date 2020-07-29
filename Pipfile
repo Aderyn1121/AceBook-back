@@ -20,10 +20,10 @@ sqlalchemy = "*"
 wtforms = "*"
 flask-wtf = "*"
 pyjwt = "*"
-flask-cors = "*"
 boto = "*"
 awscli = "*"
 boto3 = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.8"
