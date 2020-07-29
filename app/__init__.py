@@ -1,5 +1,5 @@
 import os
-from flask import Flask, send_from_directory
+from flask import Flask
 from flask_migrate import Migrate
 from flask_cors import CORS
 # from .aws3 import upload_file_to_s3

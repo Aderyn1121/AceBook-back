@@ -67,18 +67,10 @@ VALUES
         'male',
         null,
         'asexual',
-        false,5
+        false,
         'cats',
         false,
         true,
         true
     );
 
-INSERT INTO messages (sender_id, recipient_id, content, seen)
-VALUES
-    (
-        1,
-        2,
-        'Hey!',
-        false
-    )
