@@ -14,6 +14,21 @@ VALUES
     true,
     true),
     (
+        'Emm',
+        'Burnham',
+        'emm@b.com',
+        'pbkdf2:sha256:150000$Kae4NpQC$0f5d41ceda81c71f16e5c4f7c5651b12e3bb9aa631ff9c2c9a979a6781b7fe7f',
+        'female',
+        'female',
+        null,
+        'demi',
+        true,
+        'dogs',
+        true,
+        true,
+        true
+    ),
+    (
         'Domenico',
         'Scandella',
         'cheese@worms.com',
@@ -27,10 +42,39 @@ VALUES
         true,
         true,
         true
+    ),
+    (
+        'Test',
+        'Two',
+        'test@test2.com',
+        'pbkdf2:sha256:150000$Kae4NpQC$0f5d41ceda81c71f16e5c4f7c5651b12e3bb9aa631ff9c2c9a979a6781b7fe7f',
+        'female',
+        'female',
+        null,
+        'asexual',
+        true,
+        'cats',
+        true,
+        true,
+        true
+    ),
+    (
+        'Test',
+        'Three',
+        'test3@test.com',
+        'pbkdf2:sha256:150000$Kae4NpQC$0f5d41ceda81c71f16e5c4f7c5651b12e3bb9aa631ff9c2c9a979a6781b7fe7f',
+        'male',
+        'male',
+        null,
+        'asexual',
+        false,5
+        'cats',
+        false,
+        true,
+        true
     );
 
-
-INSERT INTO messages (sender_id, recipient_id, content)
+INSERT INTO messages (sender_id, recipient_id, content, seen)
 VALUES
     (
         1,

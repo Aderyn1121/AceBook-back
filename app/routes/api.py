@@ -6,6 +6,12 @@ from ..config import Configuration
 
 api = Blueprint("api", __name__, url_prefix="/api")
 
+def helper(val):
+    if val == 1:
+        return True
+    if val == 0:
+        return False
+
 
 @api.route('/users', methods=["GET", "POST"])
 def signup():
@@ -20,11 +26,11 @@ def signup():
                 gender_pref=data['genderPref'],
                 # img_url=data['imgUrl'],
                 spectrum=data['spectrum'],
-                likes_puns=data['likesPuns'],
+                likes_puns=helper(data['likesPuns']),
                 favorite_pet=data['favPet'],
-                spontaneous=data['spontaneous'],
-                into_tech=data['intoTech'],
-                introvert=data['introvert'],
+                spontaneous=helper(data['spontaneous']),
+                into_tech=helper(data['intoTech']),
+                introvert=helper(data['introvert']),
                 liked_users=[],
                 blocked_users=[]
                 )
