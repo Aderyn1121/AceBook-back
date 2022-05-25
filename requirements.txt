@@ -16,7 +16,7 @@ mccabe==0.6.1
 pyasn1==0.4.8
 pycodestyle==2.6.0
 pyflakes==2.2.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 python-dateutil==2.8.1
 python-dotenv==0.14.0
 python-engineio==3.13.1
